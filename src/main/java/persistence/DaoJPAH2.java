@@ -18,5 +18,16 @@ public class DaoJPAH2<T> implements Dao<T> {
         em.close();
     }
 
+    @Override
+    public void update(T t) {
+        final EntityManager em = emf.createEntityManager();
+        em.getTransaction().begin();
+
+        em.merge(t);
+
+        em.getTransaction().commit();
+        em.close();
+    }
+
 
 }

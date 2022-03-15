@@ -14,7 +14,7 @@ public class ClientDaoJPAH2 extends DaoJPAH2<Client>{
 
         final TypedQuery<Client> query = em.createQuery(
                 "select c " +
-                        "from Client c " +
+                        "from Client c left join fetch c.documentLoans " +
                         "where c.username like :username " +
                         "and c.password like :password"
                 ,Client.class
