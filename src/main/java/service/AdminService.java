@@ -13,6 +13,7 @@ import persistence.Dao;
 @NoArgsConstructor
 public class AdminService {
     Dao<Client> clientDAO = new DaoJPAH2<>();
+    Dao<Book> bookDAO = new DaoJPAH2<>();
 
     public void saveClient(String username, String password) {
         Client clientToSave = new Client();
@@ -22,7 +23,13 @@ public class AdminService {
     }
 
     public void saveBook(String title, String author, String genre, int year, String publisher, int pages) {
-        //Book book;
-        //bookDAO.save(book);
+        Book bookToSave = new Book();
+        bookToSave.setTitle(title);
+        bookToSave.setAuthor(author);
+        bookToSave.setGenre(genre);
+        bookToSave.setPublicationYear(year);
+        bookToSave.setPublisher(publisher);
+        bookToSave.setPages(pages);
+        bookDAO.save(bookToSave);
     }
 }

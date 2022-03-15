@@ -1,6 +1,6 @@
 package model.Documents;
 
-import jakarta.persistence.Entity;
+import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
 
@@ -9,8 +9,7 @@ import lombok.experimental.SuperBuilder;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Builder
-@SuperBuilder
+@DiscriminatorValue("Book")
 public class Book extends Document{
     private String publisher;
     private int pages;
