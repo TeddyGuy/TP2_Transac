@@ -19,6 +19,7 @@ import java.util.List;
 public class AdminService {
     ClientDaoJPAH2 clientDAO;
     DocumentDaoJPAH2 documentDAO;
+    DocumentDaoJPAH2 documentDao;
 
     public void saveClient(String username, String password) {
         Client clientToSave = new Client();
@@ -40,5 +41,11 @@ public class AdminService {
 
     public List<Document> findDocuments(String titleSearch, String authorSearch, String genreSearch, int year) {
         return documentDAO.find(titleSearch, authorSearch, genreSearch, year);
+    }
+
+    public void addCopiesToDocument(int copies, long id){
+        Document document = documentDao.findById(id);
+        document.setCopies(document.getCopies() + copies);
+        documentDao.update(document);
     }
 }

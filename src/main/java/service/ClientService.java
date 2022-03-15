@@ -20,13 +20,13 @@ import java.util.Optional;
 @NoArgsConstructor
 public class ClientService {
     ClientDaoJPAH2 clientDao;
-    DocumentDaoJPAH2 documentDaoJPAH2;
+    DocumentDaoJPAH2 documentDao;
     DocumentLoanDaoJPAH2 documentLoanDao;
     Client authenticatedClient;
 
-    public ClientService(ClientDaoJPAH2 clientDao, DocumentDaoJPAH2 documentDaoJPAH2, DocumentLoanDaoJPAH2 documentLoanDao){
+    public ClientService(ClientDaoJPAH2 clientDao, DocumentDaoJPAH2 documentDao, DocumentLoanDaoJPAH2 documentLoanDao){
         this.clientDao = clientDao;
-        this.documentDaoJPAH2 = documentDaoJPAH2;
+        this.documentDao = documentDao;
         this.documentLoanDao = documentLoanDao;
     }
 
@@ -43,11 +43,13 @@ public class ClientService {
     }
 
     public void borrowDocumentById(int i) {
-        Document documentToBorrow = documentDaoJPAH2.findById(i);
+        Document documentToBorrow = documentDao.findById(i);
 
         if(documentToBorrow.getCopies() == 0){
             throw new RuntimeException("Insufficient Amount of copies for document : " + documentToBorrow.getId());
         }
+
+        documentToBorrow.setCopies(documentToBorrow.getCopies() - 1);
 
         LocalDate expectedReturnDate = LocalDate.now();
 
@@ -60,6 +62,7 @@ public class ClientService {
 
         documentLoanDao.save(documentLoan);
         clientDao.update(authenticatedClient);
+        documentDao.update(documentToBorrow);
     }
 
     public List<DocumentLoan> findAllDocumentLoans() {
