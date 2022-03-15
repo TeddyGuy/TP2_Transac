@@ -5,15 +5,18 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import model.Client;
 import model.Documents.Book;
+import model.Documents.Document;
 import persistence.DaoJPAH2;
 import persistence.Dao;
+
+import java.util.List;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 public class AdminService {
     Dao<Client> clientDAO = new DaoJPAH2<>();
-    Dao<Book> bookDAO = new DaoJPAH2<>();
+    Dao<Document> documentDAO = new DaoJPAH2<>();
 
     public void saveClient(String username, String password) {
         Client clientToSave = new Client();
@@ -30,6 +33,10 @@ public class AdminService {
         bookToSave.setPublicationYear(year);
         bookToSave.setPublisher(publisher);
         bookToSave.setPages(pages);
-        bookDAO.save(bookToSave);
+        documentDAO.save(bookToSave);
+    }
+
+    public List<Document> findDocuments(String titleSearch, String authorSearch, String genreSearch, int year) {
+        //return documentDAO.find(titleSearch, authorSearch, genreSearch, year);
     }
 }
