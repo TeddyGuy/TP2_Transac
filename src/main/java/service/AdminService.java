@@ -17,7 +17,7 @@ import java.util.List;
 @NoArgsConstructor
 public class AdminService {
     Dao<Client> clientDAO = new DaoJPAH2<>();
-    Dao<Document> documentDAO = new DocumentDaoJPAH2<>();
+    DocumentDaoJPAH2 documentDAO = new DocumentDaoJPAH2();
 
     public void saveClient(String username, String password) {
         Client clientToSave = new Client();
@@ -38,6 +38,6 @@ public class AdminService {
     }
 
     public List<Document> findDocuments(String titleSearch, String authorSearch, String genreSearch, int year) {
-        //return documentDAO.find(titleSearch, authorSearch, genreSearch, year);
+        return documentDAO.find(titleSearch, authorSearch, genreSearch, year);
     }
 }
