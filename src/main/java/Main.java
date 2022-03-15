@@ -1,9 +1,6 @@
 import model.DocumentLoan;
 import model.Documents.Document;
-import persistence.ClientDaoJPAH2;
-import persistence.Dao;
-import persistence.DaoJPAH2;
-import persistence.DocumentDaoJPAH2;
+import persistence.*;
 import service.AdminService;
 import service.ClientService;
 
@@ -13,7 +10,7 @@ public class Main {
     public static void main(String[] args) {
         ClientDaoJPAH2 clientDaoJPAH2 = new ClientDaoJPAH2();
         DocumentDaoJPAH2 documentDaoJPAH2 = new DocumentDaoJPAH2();
-        Dao<DocumentLoan> documentLoanDao = new DaoJPAH2<>();
+        DocumentLoanDaoJPAH2 documentLoanDao = new DocumentLoanDaoJPAH2();
         AdminService adminService = new AdminService(clientDaoJPAH2,documentDaoJPAH2);
         adminService.saveClient("JohnDoe", "password");
         adminService.saveBook("Le Torrent","Anne Hébert","Tragédie",1950,"Bibliothèque Québecoise",164);

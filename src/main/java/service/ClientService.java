@@ -10,6 +10,7 @@ import model.Documents.Document;
 import persistence.ClientDaoJPAH2;
 import persistence.Dao;
 import persistence.DocumentDaoJPAH2;
+import persistence.DocumentLoanDaoJPAH2;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -21,10 +22,10 @@ import java.util.Optional;
 public class ClientService {
     ClientDaoJPAH2 clientDao;
     DocumentDaoJPAH2 documentDaoJPAH2;
-    Dao<DocumentLoan> documentLoanDao;
+    DocumentLoanDaoJPAH2 documentLoanDao;
     Client authenticatedClient;
 
-    public ClientService(ClientDaoJPAH2 clientDao, DocumentDaoJPAH2 documentDaoJPAH2, Dao<DocumentLoan> documentLoanDao){
+    public ClientService(ClientDaoJPAH2 clientDao, DocumentDaoJPAH2 documentDaoJPAH2, DocumentLoanDaoJPAH2 documentLoanDao){
         this.clientDao = clientDao;
         this.documentDaoJPAH2 = documentDaoJPAH2;
         this.documentLoanDao = documentLoanDao;
