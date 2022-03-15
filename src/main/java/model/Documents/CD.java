@@ -11,7 +11,6 @@ import lombok.NoArgsConstructor;
 @Entity
 @Data
 @AllArgsConstructor
-@NoArgsConstructor
 @DiscriminatorValue("CD")
 public class CD extends Document{
     public final static int BORROW_TIME_IN_WEEK = 2;

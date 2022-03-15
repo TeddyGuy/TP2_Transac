@@ -44,6 +44,11 @@ public class ClientService {
 
     public void borrowDocumentById(int i) {
         Document documentToBorrow = documentDaoJPAH2.findById(i);
+
+        if(documentToBorrow.getCopies() == 0){
+            throw new RuntimeException("Insufficient Amount of copies for document : " + documentToBorrow.getId());
+        }
+
         LocalDate expectedReturnDate = LocalDate.now();
 
         if(documentToBorrow instanceof Book){

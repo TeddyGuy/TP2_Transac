@@ -20,5 +20,5 @@ public abstract class Document {
     private String author;
     private String genre;
     private int publicationYear;
-    private int copies;
+    private int copies = 1;
 }
