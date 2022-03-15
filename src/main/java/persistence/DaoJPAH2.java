@@ -4,6 +4,8 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
 
+import java.util.List;
+
 public class DaoJPAH2<T> implements Dao<T> {
     private final EntityManagerFactory emf = Persistence.createEntityManagerFactory("hibernate.exe");
     @Override
@@ -16,4 +18,5 @@ public class DaoJPAH2<T> implements Dao<T> {
         em.getTransaction().commit();
         em.close();
     }
+
 }

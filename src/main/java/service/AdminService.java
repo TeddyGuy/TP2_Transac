@@ -8,6 +8,7 @@ import model.Documents.Book;
 import model.Documents.Document;
 import persistence.DaoJPAH2;
 import persistence.Dao;
+import persistence.DocumentDaoJPAH2;
 
 import java.util.List;
 
@@ -16,7 +17,7 @@ import java.util.List;
 @NoArgsConstructor
 public class AdminService {
     Dao<Client> clientDAO = new DaoJPAH2<>();
-    Dao<Document> documentDAO = new DaoJPAH2<>();
+    Dao<Document> documentDAO = new DocumentDaoJPAH2<>();
 
     public void saveClient(String username, String password) {
         Client clientToSave = new Client();
