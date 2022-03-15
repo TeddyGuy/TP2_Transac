@@ -16,9 +16,9 @@ public class Main {
         adminService.saveBook("Le Torrent","Anne Hébert","Tragédie",1950,"Bibliothèque Québecoise",164);
         List<Document> documentResults = adminService.findDocuments("torrent","Anne Hébert","Tragédie",1950);
         System.out.println(documentResults);
-        ClientService clientService = new ClientService(clientDaoJPAH2);
+        ClientService clientService = new ClientService(clientDaoJPAH2, documentDaoJPAH2);
         clientService.login("JohnDoe","password");
-        //clientService.borrowDocumentById();
+        clientService.borrowDocumentById(1);
         //List<DocumentLoan> documentLoanResults = clientService.findAllDocumentLoan();
         //System.out.println(documentLoanResults);
     }

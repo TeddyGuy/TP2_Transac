@@ -3,6 +3,7 @@ package persistence;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
+import jakarta.persistence.TypedQuery;
 
 public class DaoJPAH2<T> implements Dao<T> {
     protected final EntityManagerFactory emf = Persistence.createEntityManagerFactory("hibernate.exe");
@@ -16,4 +17,6 @@ public class DaoJPAH2<T> implements Dao<T> {
         em.getTransaction().commit();
         em.close();
     }
+
+
 }

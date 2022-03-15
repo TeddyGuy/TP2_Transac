@@ -33,4 +33,24 @@ public class DocumentDaoJPAH2 extends DaoJPAH2<Document>{
 
         return documents;
     }
+
+    public Document findById(long id) {
+        final EntityManager em = emf.createEntityManager();
+        em.getTransaction().begin();
+
+        final TypedQuery<Document> query = em.createQuery(
+                "select d " +
+                        "from Document d " +
+                        "where d.id = :id"
+                ,Document.class);
+
+        query.setParameter("id",id);
+
+        Document document = query.getSingleResult();
+
+        em.getTransaction().commit();
+        em.close();
+
+        return document;
+    }
 }

@@ -4,7 +4,9 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import model.Client;
+import model.Documents.Document;
 import persistence.ClientDaoJPAH2;
+import persistence.DocumentDaoJPAH2;
 
 import java.util.Optional;
 
@@ -13,10 +15,12 @@ import java.util.Optional;
 @NoArgsConstructor
 public class ClientService {
     ClientDaoJPAH2 clientDao;
+    DocumentDaoJPAH2 documentDaoJPAH2;
     Client authenticatedClient;
 
-    public ClientService(ClientDaoJPAH2 clientDao){
+    public ClientService(ClientDaoJPAH2 clientDao, DocumentDaoJPAH2 documentDaoJPAH2){
         this.clientDao = clientDao;
+        this.documentDaoJPAH2 = documentDaoJPAH2;
     }
 
     public void login(String username, String password) {
@@ -29,5 +33,10 @@ public class ClientService {
         }else{
             throw new RuntimeException("login faild for user : " + username);
         }
+    }
+
+    public void borrowDocumentById(int i) {
+        Document documentToBorrow = documentDaoJPAH2.findById(i);
+
     }
 }
