@@ -13,7 +13,7 @@ public class Main {
         List<Document> documentResults = adminService.findDocuments("torrent","Anne Hébert","Tragédie",1950);
         System.out.println(documentResults);
         ClientService clientService = new ClientService();
-        //clientService.login("John Doe","Passw0rd123");
+        clientService.login("John Doe","Passw0rd123");
         //clientService.borrowDocumentById();
         //List<DocumentLoan> documentLoanResults = clientService.findAllDocumentLoan();
         //System.out.println(documentLoanResults);

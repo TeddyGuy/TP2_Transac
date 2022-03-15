@@ -10,4 +10,7 @@ import model.Client;
 @NoArgsConstructor
 public class ClientService {
     Client authenticatedClient;
+
+    public void login(String username, String password) {
+    }
 }
