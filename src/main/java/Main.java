@@ -22,7 +22,7 @@ public class Main {
         ClientService clientService = new ClientService(clientDaoJPAH2, documentDaoJPAH2, documentLoanDao);
         clientService.login("JohnDoe","password");
         clientService.borrowDocumentById(1);
-        //List<DocumentLoan> documentLoanResults = clientService.findAllDocumentLoan();
+        List<DocumentLoan> documentLoanResults = clientService.findAllDocumentLoan();
         //System.out.println(documentLoanResults);
     }
 }

@@ -12,6 +12,7 @@ import persistence.Dao;
 import persistence.DocumentDaoJPAH2;
 
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Optional;
 
 @Data
@@ -53,5 +54,10 @@ public class ClientService {
         authenticatedClient.getDocumentLoans().add(documentLoan);
 
         documentLoanDao.save(documentLoan);
+        clientDao.update(authenticatedClient);
+    }
+
+    public List<DocumentLoan> findAllDocumentLoan() {
+        //return documentLoanDao.getByClientId(authenticatedClient.getId());
     }
 }
