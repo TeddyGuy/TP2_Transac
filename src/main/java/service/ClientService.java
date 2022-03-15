@@ -5,8 +5,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import model.Client;
 import persistence.ClientDaoJPAH2;
-import persistence.Dao;
-import persistence.DaoJPAH2;
 
 import java.util.Optional;
 
@@ -14,13 +12,22 @@ import java.util.Optional;
 @AllArgsConstructor
 @NoArgsConstructor
 public class ClientService {
-    ClientDaoJPAH2 clientDao = new ClientDaoJPAH2();
+    ClientDaoJPAH2 clientDao;
     Client authenticatedClient;
+
+    public ClientService(ClientDaoJPAH2 clientDao){
+        this.clientDao = clientDao;
+    }
+
     public void login(String username, String password) {
         Client clientToLogin = new Client();
         clientToLogin.setUsername(username);
         clientToLogin.setPassword(password);
         Optional<Client> clientInDatabase = clientDao.find(clientToLogin);
-        //clientInDatabase.ifPresent(client -> authenticatedClient = client);
+        if(clientInDatabase.isPresent()){
+            authenticatedClient = clientInDatabase.get();
+        }else{
+            throw new RuntimeException("login faild for user : " + username);
+        }
     }
 }

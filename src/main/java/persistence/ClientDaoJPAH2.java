@@ -20,6 +20,9 @@ public class ClientDaoJPAH2 extends DaoJPAH2<Client>{
                 ,Client.class
         );
 
+        System.out.println(clientToLogin.getUsername());
+        System.out.println(clientToLogin.getPassword());
+
         query.setParameter("username", clientToLogin.getUsername());
         query.setParameter("password", clientToLogin.getPassword());
 

@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import model.Client;
 import model.Documents.Book;
 import model.Documents.Document;
+import persistence.ClientDaoJPAH2;
 import persistence.DaoJPAH2;
 import persistence.Dao;
 import persistence.DocumentDaoJPAH2;
@@ -16,8 +17,8 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 public class AdminService {
-    Dao<Client> clientDAO = new DaoJPAH2<>();
-    DocumentDaoJPAH2 documentDAO = new DocumentDaoJPAH2();
+    ClientDaoJPAH2 clientDAO;
+    DocumentDaoJPAH2 documentDAO;
 
     public void saveClient(String username, String password) {
         Client clientToSave = new Client();
