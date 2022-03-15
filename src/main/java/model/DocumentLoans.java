@@ -21,4 +21,7 @@ public class DocumentLoans {
     private Document document;
     private LocalDate lendingDate;
     private LocalDate expectedReturnDate;
+    @ManyToOne
+    @JoinColumn(name = "client_id")
+    private Client client;
 }
