@@ -21,5 +21,5 @@ public class Client {
     private String password;
 
     @OneToMany(mappedBy = "client")
-    private List<DocumentLoans> documentLoans;
+    private List<DocumentLoan> documentLoans;
 }

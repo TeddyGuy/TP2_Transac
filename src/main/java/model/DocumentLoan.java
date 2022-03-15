@@ -11,7 +11,7 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class DocumentLoans {
+public class DocumentLoan {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
@@ -23,5 +23,6 @@ public class DocumentLoans {
     private LocalDate expectedReturnDate;
     @ManyToOne
     @JoinColumn(name = "client_id")
+    @ToString.Exclude
     private Client client;
 }

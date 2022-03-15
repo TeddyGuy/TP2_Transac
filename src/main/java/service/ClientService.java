@@ -4,10 +4,14 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import model.Client;
+import model.DocumentLoan;
+import model.Documents.Book;
 import model.Documents.Document;
 import persistence.ClientDaoJPAH2;
+import persistence.Dao;
 import persistence.DocumentDaoJPAH2;
 
+import java.time.LocalDate;
 import java.util.Optional;
 
 @Data
@@ -16,11 +20,13 @@ import java.util.Optional;
 public class ClientService {
     ClientDaoJPAH2 clientDao;
     DocumentDaoJPAH2 documentDaoJPAH2;
+    Dao<DocumentLoan> documentLoanDao;
     Client authenticatedClient;
 
-    public ClientService(ClientDaoJPAH2 clientDao, DocumentDaoJPAH2 documentDaoJPAH2){
+    public ClientService(ClientDaoJPAH2 clientDao, DocumentDaoJPAH2 documentDaoJPAH2, Dao<DocumentLoan> documentLoanDao){
         this.clientDao = clientDao;
         this.documentDaoJPAH2 = documentDaoJPAH2;
+        this.documentLoanDao = documentLoanDao;
     }
 
     public void login(String username, String password) {
@@ -37,6 +43,15 @@ public class ClientService {
 
     public void borrowDocumentById(int i) {
         Document documentToBorrow = documentDaoJPAH2.findById(i);
-        //authenticatedClient.getDocumentLoans().add(documentToBorrow);
+        LocalDate expectedReturnDate = LocalDate.now();
+
+        if(documentToBorrow instanceof Book){
+            expectedReturnDate.plusWeeks(Book.BORROW_TIME_IN_WEEKS);
+        }
+
+        DocumentLoan documentLoan = DocumentLoan.builder().document(documentToBorrow).lendingDate(LocalDate.now()).expectedReturnDate(expectedReturnDate).client(authenticatedClient).build();
+        authenticatedClient.getDocumentLoans().add(documentLoan);
+
+        documentLoanDao.save(documentLoan);
     }
 }

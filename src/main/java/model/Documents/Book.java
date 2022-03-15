@@ -11,6 +11,7 @@ import lombok.experimental.SuperBuilder;
 @NoArgsConstructor
 @DiscriminatorValue("Book")
 public class Book extends Document{
+    public final static int BORROW_TIME_IN_WEEKS = 3;
     private String publisher;
     private int pages;
 }
