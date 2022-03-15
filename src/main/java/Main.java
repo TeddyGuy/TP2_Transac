@@ -1,8 +1,9 @@
+import persistence.DaoJPAH2;
 import service.AdminService;
 
 public class Main {
     public static void main(String[] args) {
-        AdminService adminService = new AdminService();
+        AdminService adminService = new AdminService(new DaoJPAH2<>());
         adminService.saveClient("John Doe", "Passw0rd123");
         //adminService.saveDocument("Le Torrent","Anne Hébert","Tragédie",1950,"Bibliothèque Québecoise",164);
         //List<Document> documentResults = adminService.findDocument("torrent","Anne Hébert","Tragédie",1950);
