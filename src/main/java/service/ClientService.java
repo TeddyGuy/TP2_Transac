@@ -37,6 +37,6 @@ public class ClientService {
 
     public void borrowDocumentById(int i) {
         Document documentToBorrow = documentDaoJPAH2.findById(i);
-
+        //authenticatedClient.getDocumentLoans().add(documentToBorrow);
     }
 }
