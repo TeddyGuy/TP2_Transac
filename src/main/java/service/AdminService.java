@@ -12,6 +12,7 @@ import persitence.Dao;
 public class AdminService {
     Dao<Client> clientDAO;
     public void saveClient(String username, String password) {
-        //clientDAO.save(username,password);
+        Client clientToSave = Client.builder().username(username).password(password).build();
+        clientDAO.save(clientToSave);
     }
 }
