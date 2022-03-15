@@ -5,7 +5,7 @@ public class Main {
     public static void main(String[] args) {
         AdminService adminService = new AdminService(new DaoJPAH2<>());
         adminService.saveClient("John Doe", "Passw0rd123");
-        //adminService.saveDocument("Le Torrent","Anne Hébert","Tragédie",1950,"Bibliothèque Québecoise",164);
+        adminService.saveBook("Le Torrent","Anne Hébert","Tragédie",1950,"Bibliothèque Québecoise",164);
         //List<Document> documentResults = adminService.findDocument("torrent","Anne Hébert","Tragédie",1950);
         //System.out.println(documentResults);
         //ClientService clientService = new ClientService("John Doe", "Passw0rd123");

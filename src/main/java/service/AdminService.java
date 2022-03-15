@@ -12,8 +12,12 @@ import persistence.Dao;
 @NoArgsConstructor
 public class AdminService {
     Dao<Client> clientDAO;
+
     public void saveClient(String username, String password) {
         Client clientToSave = Client.builder().username(username).password(password).build();
         clientDAO.save(clientToSave);
+    }
+
+    public void saveBook(String title, String author, String genre, int year, String publisher, int pages) {
     }
 }
