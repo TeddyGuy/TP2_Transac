@@ -8,7 +8,6 @@ import model.DocumentLoan;
 import model.Documents.Book;
 import model.Documents.Document;
 import persistence.ClientDaoJPAH2;
-import persistence.Dao;
 import persistence.DocumentDaoJPAH2;
 import persistence.DocumentLoanDaoJPAH2;
 
@@ -48,7 +47,7 @@ public class ClientService {
         LocalDate expectedReturnDate = LocalDate.now();
 
         if(documentToBorrow instanceof Book){
-            expectedReturnDate.plusWeeks(Book.BORROW_TIME_IN_WEEKS);
+            expectedReturnDate = expectedReturnDate.plusWeeks(Book.BORROW_TIME_IN_WEEKS);
         }
 
         DocumentLoan documentLoan = DocumentLoan.builder().document(documentToBorrow).lendingDate(LocalDate.now()).expectedReturnDate(expectedReturnDate).client(authenticatedClient).build();
@@ -58,7 +57,7 @@ public class ClientService {
         clientDao.update(authenticatedClient);
     }
 
-    public List<DocumentLoan> findAllDocumentLoan() {
-        //return documentLoanDao.getByClientId(authenticatedClient.getId());
+    public List<DocumentLoan> findAllDocumentLoans() {
+        return documentLoanDao.getByClientId(authenticatedClient.getId());
     }
 }

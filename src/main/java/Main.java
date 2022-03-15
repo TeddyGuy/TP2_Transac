@@ -19,7 +19,11 @@ public class Main {
         ClientService clientService = new ClientService(clientDaoJPAH2, documentDaoJPAH2, documentLoanDao);
         clientService.login("JohnDoe","password");
         clientService.borrowDocumentById(1);
-        List<DocumentLoan> documentLoanResults = clientService.findAllDocumentLoan();
-        //System.out.println(documentLoanResults);
+        List<DocumentLoan> documentLoanResults = clientService.findAllDocumentLoans();
+        System.out.println(documentLoanResults);
+        for ( DocumentLoan dl : documentLoanResults) {
+            System.out.println(dl.getClient().getUsername());
+            System.out.println(dl.getDocument().getTitle());
+        }
     }
 }

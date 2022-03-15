@@ -2,6 +2,7 @@ package persistence;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.TypedQuery;
+import model.DocumentLoan;
 import model.Documents.Document;
 
 import java.util.List;
